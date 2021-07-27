@@ -3,13 +3,19 @@ import './App.css';
 import EmotionTable from './EmotionTable.js';
 import React from 'react';
 
+
 class App extends React.Component {
+  componentDidMount(){
+    document.title = "Sentiment Analyzer"
+  }
+
+
   state = {innercomp:<textarea rows="4" cols="50" id="textinput"/>,
             mode: "text",
           sentimentOutput:[],
           sentiment:true
         }
-  
+
   renderTextArea = ()=>{
     document.getElementById("textinput").value = "";
     if(this.state.mode === "url") {
@@ -50,7 +56,7 @@ class App extends React.Component {
         } else if (data === "negative"){
           output = <div style={{color:"red",fontSize:20}}>{data}</div>
         } else {
-          output = <div style={{color:"orange",fontSize:20}}>{data}</div>
+          output = <div style={{color:"yellow",fontSize:20}}>{data}</div>
         }
         this.setState({sentimentOutput:output});
       })});
@@ -74,7 +80,9 @@ class App extends React.Component {
 
   render() {
     return (  
+       
       <div className="App">
+
       <button className="btn btn-info" onClick={this.renderTextArea}>Text</button>
         <button className="btn btn-dark"  onClick={this.renderTextBox}>URL</button>
         <br/><br/>
@@ -88,5 +96,7 @@ class App extends React.Component {
     );
     }
 }
+
+
 
 export default App;
